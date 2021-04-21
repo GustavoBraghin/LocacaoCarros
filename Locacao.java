@@ -2,20 +2,20 @@ package locadoradecarros;
 
 public class Locacao {
     
-    private float valorLocacao;
-    private float valorCalcao;
+    private double valorLocacao;
+    private double valorCalcao;
     private String horaLocacao;
     private String dataLocacao;
-    private float kmAdquirida;
+    private long kmAdquirida;
     private boolean devolvido;
     private String horaDevolucao;
     private String dataDevolucao;
-    private float kmDevolvida;
+    private long kmDevolvida;
     private String codigoLocacao;
     Cliente cli;
     Carro car;
 
-    public Locacao(float valorLocacao, float valorCalcao, String horaLocacao, String dataLocacao, float kmAdquirida, boolean devolvido, String horaDevolucao, String dataDevolucao, float kmDevolvida, String codigoLocacao, Cliente cli, Carro car) {
+    public Locacao(double valorLocacao, double valorCalcao, String horaLocacao, String dataLocacao, long kmAdquirida, boolean devolvido, String horaDevolucao, String dataDevolucao, long kmDevolvida, String codigoLocacao, Cliente cli, Carro car) {
         this.valorLocacao = valorLocacao;
         this.valorCalcao = valorCalcao;
         this.horaLocacao = horaLocacao;
@@ -33,7 +33,7 @@ public class Locacao {
     public Locacao() {
     }
 
-    public float getValorLocacao() {
+    public double getValorLocacao() {
         return valorLocacao;
     }
 
@@ -41,7 +41,7 @@ public class Locacao {
         this.valorLocacao = valorLocacao;
     }
 
-    public float getValorCalcao() {
+    public double getValorCalcao() {
         return valorCalcao;
     }
 
@@ -69,7 +69,7 @@ public class Locacao {
         return kmAdquirida;
     }
 
-    public void setKmAdquirida(float kmAdquirida) {
+    public void setKmAdquirida(long kmAdquirida) {
         this.kmAdquirida = kmAdquirida;
     }
 
@@ -101,7 +101,7 @@ public class Locacao {
         return kmDevolvida;
     }
 
-    public void setKmDevolvida(float kmDevolvida) {
+    public void setKmDevolvida(long kmDevolvida) {
         this.kmDevolvida = kmDevolvida;
     }
 

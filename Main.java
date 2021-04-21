@@ -14,7 +14,7 @@ public class Main {
         do{
             System.out.println("Locadora de Carros\n");
             System.out.println("1 - Cliente");
-            System.out.println("2 - Carrro");
+            System.out.println("2 - Carro");
             System.out.println("3 - Locação");
             System.out.println("0 - Sair");
             opcao = scan.nextInt();
