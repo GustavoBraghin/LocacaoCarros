@@ -261,6 +261,7 @@ public class Main {
                                 System.out.println("Carro não cadastrado.\n");
                             }else{
                                 //RECEBE OS DADOS DA LOCAÇÃO E REGISTRA
+                                carroAux.setEstado(1);
                                 System.out.println("Dados da locação:\n");
                                 System.out.println("Digite o valor da locação: ");
                                 valorLocacao = scan.nextDouble();
@@ -286,7 +287,7 @@ public class Main {
                         codigoLocacao = scan.next();
                         Locacao locacaoAux = locacao.Consultar(codigoLocacao);
 
-                        if (locacao == null) {
+                        if (locacaoAux == null) {
                             System.out.println("Código não localizado.\n");
                         }else if(!locacao.getDevolvido()){
                                 System.out.println("Digite a hora da devolução: ");
@@ -297,24 +298,23 @@ public class Main {
                                 kmDevolvida = scan.nextLong();
                                 clearBuffer(scan);
                                 devolvido = true;
+                                locacaoAux.car.setEstado(0);
                                 
                                 locacao.Cadastrar(new Locacao(horaDevolucao, dataDevolucao, kmDevolvida, devolvido));
                         }else{
                             System.out.println("Devolução já realizada.\n");
                         }
                         break;
-/*
-                    case 3:
-                        System.out.println("Digite a PLACA para alteracao: ");
-                        placa = scan.next();
-                        Carro carroAtt = carro.Consultar(placa);
 
-                        if (carroAtt == null) {
-                            System.out.println("Placa não cadastrada.\n");
-                        } else {
-                            carro.Atualizar(carroAtt);
+                    case 3:
+                        System.out.println("\nDigite o código de locação para consultar: ");
+                        codigoLocacao = scan.next();
+                        Locacao locacaoAtt = locacao.Consultar(codigoLocacao);
+
+                        if (locacaoAtt == null) {
+                            System.out.println("Código não cadastrado.\n");
                         }
-                        break;*/
+                        break;
                 }
             }
         } while (opcao < 1 || opcao > 3);
