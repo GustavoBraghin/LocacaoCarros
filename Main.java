@@ -55,52 +55,50 @@ public class Main {
             } else {
                 switch (opcao) {
                     case 1://Cadastrar
-                        System.out.println("Nome:");
+                        System.out.println("Nome: ");
                         nome = scan.next();
-
-                        System.out.println("Telefone:");
+                        System.out.println("Telefone: ");
                         tel = scan.next();
-
-                        System.out.println("email:");
+                        System.out.println("email: ");
                         email = scan.next();
-
-                        System.out.println("CPF:");
+                        System.out.println("CPF: ");
                         cpf = scan.next();
-
-                        System.out.println("Endereço:");
+                        System.out.println("Endereço: ");
                         end = scan.next();
-
+                        
+                        //CADASTRA OS DADOS DO CLIENTE NA LISTA CLIENTES
                         cliente.Cadastrar(new Cliente(nome, tel, email, cpf, end));
+                        
                         //passando um cliente da lista para variavel c1
                         //Cliente c1 = Cliente.clientes.get(0);
                         break;
+                        
                     case 2://Consultar
-                        System.out.println("Digite o CPF para consulta:\n");
+                        System.out.println("\nDigite o CPF para consulta: ");
                         cpf = scan.next();
-                        clearBuffer(scan);
                         Cliente clienteaux = cliente.Consultar(cpf);
 
                         if (clienteaux == null) {
-                            System.out.println("Cpf não cadastrado.");
-                        } else {
-                            System.out.println(clienteaux.getCpf());
+                            System.out.println("Cpf não cadastrado.\n");
                         }
+                        
                         break;
 
                     case 3:
-                        System.out.println("Digite o CPF para alteracao:\n");
+                        System.out.println("Digite o CPF para alteracao: ");
                         cpf = scan.next();
                         clearBuffer(scan);
                         Cliente clienteatt = cliente.Consultar(cpf);
 
                         if (clienteatt == null) {
-                            System.out.println("Cpf não cadastrado.");
+                            System.out.println("Cpf não cadastrado.\n");
                         } else {
                             cliente.Atualizar(clienteatt);
                         }
                         break;
+                        
                     case 4:
-                        System.out.println("Digite o CPF para consulta:\n");
+                        System.out.println("Digite o CPF para consulta: ");
                         cpf = scan.next();
                         clearBuffer(scan);
                         Cliente clienterem = cliente.Consultar(cpf);
@@ -123,7 +121,15 @@ public class Main {
     public static int CrudCarro() {
 
         Scanner scan = new Scanner(System.in);
-
+        Carro carro = new Carro();
+        String marca;
+        String modelo;
+        String placa;
+        String chassi;
+        String cor;
+        String tipoCombustivel;
+        long km;
+        int estado;
         int opcao;
 
         do {
@@ -136,6 +142,75 @@ public class Main {
 
             if (opcao < 1 || opcao > 4) {
                 System.out.println("Opção inválida\n");
+            }else{
+                switch (opcao) {
+                    case 1://Cadastrar
+                        System.out.println("Marca: ");
+                        marca = scan.next();
+                        System.out.println("Modelo: ");
+                        modelo = scan.next();
+                        System.out.println("Placa: ");
+                        placa = scan.next();
+                        System.out.println("Chassi: ");
+                        chassi = scan.next();
+                        System.out.println("Cor: ");
+                        cor = scan.next();
+                        System.out.println("Tipo cobustível: ");
+                        tipoCombustivel = scan.next();
+                        System.out.println("Quilometragem: ");
+                        km = scan.nextLong();
+                        do{
+                            System.out.println("Estado: ");
+                            System.out.println("0 - DISPONÍVEL: ");
+                            System.out.println("1 - ALUGADO: ");
+                            System.out.println("2 - MANUTENÇÃO: ");
+                            estado = scan.nextInt();
+                            clearBuffer(scan);
+                            
+                            if(estado<0 || estado>2){
+                                System.out.println("Estado deve ser entre 0 e 2 ");
+                            }
+                        }while(estado<0 || estado>2);
+                        
+                        //CADASTRA OS DADOS DO CLIENTE NA LISTA CLIENTES
+                        carro.Cadastrar(new Carro(marca, modelo, placa, chassi, cor, tipoCombustivel, km, estado));
+                        break;
+                        
+                    case 2://Consultar
+                        System.out.println("\nDigite a PLACA para consulta: ");
+                        placa = scan.next();
+                        Carro carroAux = carro.Consultar(placa);
+
+                        if (carroAux == null) {
+                            System.out.println("Placa não cadastrada.\n");
+                        }
+                        break;
+
+                    case 3:
+                        System.out.println("Digite a PLACA para alteracao: ");
+                        placa = scan.next();
+                        Carro carroAtt = carro.Consultar(placa);
+
+                        if (carroAtt == null) {
+                            System.out.println("Placa não cadastrada.\n");
+                        } else {
+                            carro.Atualizar(carroAtt);
+                        }
+                        break;
+                        
+                    case 4:
+                        System.out.println("Digite a PLACA para consulta: ");
+                        placa = scan.next();
+                        Carro carroRem = carro.Consultar(placa);
+
+                        if (carroRem == null) {
+                            System.out.println("Placa não cadastrada.\n");
+                        } else {
+                            carro.Remover(carroRem);
+                            System.out.println("Carro removido.\n");
+                        }
+                        break;
+                }
             }
         } while (opcao < 1 || opcao > 4);
 
@@ -146,7 +221,19 @@ public class Main {
     public static int CrudLocacao() {
 
         Scanner scan = new Scanner(System.in);
-
+        Carro carro = new Carro();
+        Cliente cliente = new Cliente();
+        String cpf;
+        Locacao locacao = new Locacao();
+        double valorLocacao;
+        String horaLocacao;
+        String dataLocacao;
+        long kmAdquirida;
+        boolean devolvido;
+        String horaDevolucao;
+        String dataDevolucao;
+        long kmDevolvida;
+        String codigoLocacao;
         int opcao;
 
         do {
@@ -158,6 +245,77 @@ public class Main {
 
             if (opcao < 1 || opcao > 3) {
                 System.out.println("Opção inválida\n");
+            }else{
+                switch (opcao) {
+                    case 1://Retirada
+                        //RECEBE O CLIENTE
+                        System.out.println("\nDigite o CPF para consulta: ");
+                        cpf = scan.next();
+                        Cliente clienteAux = cliente.Consultar(cpf);
+                        if (clienteAux == null) {
+                            System.out.println("Cpf não cadastrado.\n");
+                        } else {
+                            //RECEBE O CARRO
+                            Carro carroAux = carro.Disponivel();
+                            if(carroAux == null){
+                                System.out.println("Carro não cadastrado.\n");
+                            }else{
+                                //RECEBE OS DADOS DA LOCAÇÃO E REGISTRA
+                                System.out.println("Dados da locação:\n");
+                                System.out.println("Digite o valor da locação: ");
+                                valorLocacao = scan.nextDouble();
+                                clearBuffer(scan);
+                                System.out.println("Digite a hora da locação: ");
+                                horaLocacao = scan.next();
+                                System.out.println("Digite a data da locação: ");
+                                dataLocacao = scan.next();
+                                System.out.println("Digite a quilometragem adquirida do carro: ");
+                                kmAdquirida = scan.nextLong();
+                                clearBuffer(scan);
+                                devolvido = false;
+                                System.out.println("Digite o código da locação:");
+                                codigoLocacao = scan.next();
+                                
+                                locacao.Cadastrar(new Locacao(valorLocacao, horaLocacao, dataLocacao, kmAdquirida, devolvido, codigoLocacao, clienteAux, carroAux));
+                            }
+                        }
+                        break;
+ 
+                    case 2://devolução
+                        System.out.println("\nDigite o código de locação para fazer a devolução: ");
+                        codigoLocacao = scan.next();
+                        Locacao locacaoAux = locacao.Consultar(codigoLocacao);
+
+                        if (locacao == null) {
+                            System.out.println("Código não localizado.\n");
+                        }else if(!locacao.getDevolvido()){
+                                System.out.println("Digite a hora da devolução: ");
+                                horaDevolucao = scan.next();
+                                System.out.println("Digite a data da devolução: ");
+                                dataDevolucao = scan.next();
+                                System.out.println("Digite a quilometragem devolvida do carro: ");
+                                kmDevolvida = scan.nextLong();
+                                clearBuffer(scan);
+                                devolvido = true;
+                                
+                                locacao.Cadastrar(new Locacao(horaDevolucao, dataDevolucao, kmDevolvida, devolvido));
+                        }else{
+                            System.out.println("Devolução já realizada.\n");
+                        }
+                        break;
+/*
+                    case 3:
+                        System.out.println("Digite a PLACA para alteracao: ");
+                        placa = scan.next();
+                        Carro carroAtt = carro.Consultar(placa);
+
+                        if (carroAtt == null) {
+                            System.out.println("Placa não cadastrada.\n");
+                        } else {
+                            carro.Atualizar(carroAtt);
+                        }
+                        break;*/
+                }
             }
         } while (opcao < 1 || opcao > 3);
 
@@ -180,7 +338,8 @@ public class Main {
                 //CASO ESCOLHA O MENU DO CLIENTE
                 case 1:
                     opcao = CrudCliente();
-                    //DESENVOLVER AQUI AS FUNCIONALIDADES DO CRUDCLIENTE()
+                    //FINALIZADO - IDEIA: BOOLEAN PARA SABER SE O CLIENTE ESTA COM ALGUM CARRO EM SUA POSSE, 
+                    //E NA CONSULTA APRESENTAR OS DADOS DO CLIENTE E CARRO TAMBÉM
                     break;
                 //CASO ESCOLHA O MENU DO CARRO
                 case 2:
